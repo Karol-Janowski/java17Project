@@ -2,22 +2,6 @@ package pl.zajavka.mortgage.model;
 
 import java.math.BigDecimal;
 
-public class MortgageReference {
+public record MortgageReference(BigDecimal referenceAmount, BigDecimal referenceDuration) {
 
-    private final BigDecimal referenceAmount;
-
-    private final BigDecimal referenceDuration;
-
-    public MortgageReference(final BigDecimal referenceAmount, final BigDecimal referenceDuration) {
-        this.referenceAmount = referenceAmount;
-        this.referenceDuration = referenceDuration;
-    }
-
-    public BigDecimal getReferenceAmount() {
-        return referenceAmount;
-    }
-
-    public BigDecimal getReferenceDuration() {
-        return referenceDuration;
-    }
 }
