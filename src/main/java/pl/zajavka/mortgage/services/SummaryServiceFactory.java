@@ -11,8 +11,8 @@ public class SummaryServiceFactory {
 
     public static SummaryService create() {
         return rates -> {
-            BigDecimal interestSum = calculate(rates, rate -> rate.getRateAmounts().getInterestAmount());
-            BigDecimal overpaymentProvisionSum = calculate(rates, rate -> rate.getRateAmounts().getOverpayment().getProvisionAmount());
+            BigDecimal interestSum = calculate(rates, rate -> rate.getRateAmounts().interestAmount());
+            BigDecimal overpaymentProvisionSum = calculate(rates, rate -> rate.getRateAmounts().overpayment().getProvisionAmount());
             BigDecimal totalLostSum = interestSum.add(overpaymentProvisionSum);
             BigDecimal totalCapital = calculate(rates, rate -> totalCapital(rate.getRateAmounts()));
             return new Summary(interestSum, overpaymentProvisionSum, totalLostSum, totalCapital);
@@ -20,7 +20,7 @@ public class SummaryServiceFactory {
     }
 
     private static BigDecimal totalCapital(final RateAmounts rateAmounts) {
-        return rateAmounts.getCapitalAmount().add(rateAmounts.getOverpayment().getAmount());
+        return rateAmounts.capitalAmount().add(rateAmounts.overpayment().getAmount());
     }
 
     private static BigDecimal calculate(final List<Rate> rates, Function function) {

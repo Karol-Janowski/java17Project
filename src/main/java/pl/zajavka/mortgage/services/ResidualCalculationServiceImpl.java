@@ -43,7 +43,7 @@ public class ResidualCalculationServiceImpl implements ResidualCalculationServic
     ) {
         // jak wystąpi nadpłata to zaczynają się schody,
         // trzeba przeliczyć kredyt w zależności od tego czy podczas nadpłaty zmniejszamy czas trwania czy wysokość raty
-        if (rateAmounts.getOverpayment().getAmount().compareTo(BigDecimal.ZERO) > 0) {
+        if (rateAmounts.overpayment().getAmount().compareTo(BigDecimal.ZERO) > 0) {
             switch (inputData.getRateType()) {
                 case CONSTANT:
                     return calculateConstantResidualDuration(inputData, residualAmount, rateAmounts);
@@ -59,7 +59,7 @@ public class ResidualCalculationServiceImpl implements ResidualCalculationServic
     }
 
     private BigDecimal calculateDecreasingResidualDuration(BigDecimal residualAmount, RateAmounts rateAmounts) {
-        return residualAmount.divide(rateAmounts.getCapitalAmount(), 0, RoundingMode.CEILING);
+        return residualAmount.divide(rateAmounts.capitalAmount(), 0, RoundingMode.CEILING);
     }
 
     @SuppressWarnings("UnnecessaryLocalVariable")
@@ -71,9 +71,9 @@ public class ResidualCalculationServiceImpl implements ResidualCalculationServic
         BigDecimal q = AmountsCalculationService.calculateQ(inputData.getInterestPercent());
 
         // licznik z naszego logarytmu z licznika wzoru końcowego
-        BigDecimal xNumerator = rateAmounts.getRateAmount();
+        BigDecimal xNumerator = rateAmounts.rateAmount();
         // mianownik z naszego logarytmu z licznika wzoru końcowego. b/m to równie dobrze q-1
-        BigDecimal xDenominator = rateAmounts.getRateAmount().subtract(residualAmount.multiply(q.subtract(BigDecimal.ONE)));
+        BigDecimal xDenominator = rateAmounts.rateAmount().subtract(residualAmount.multiply(q.subtract(BigDecimal.ONE)));
 
         BigDecimal x = xNumerator.divide(xDenominator, 10, RoundingMode.HALF_UP);
         BigDecimal y = q;
@@ -88,8 +88,8 @@ public class ResidualCalculationServiceImpl implements ResidualCalculationServic
 
     private BigDecimal calculateResidualAmount(final BigDecimal residualAmount, final RateAmounts rateAmounts) {
         return residualAmount
-            .subtract(rateAmounts.getCapitalAmount())
-            .subtract(rateAmounts.getOverpayment().getAmount())
+            .subtract(rateAmounts.capitalAmount())
+            .subtract(rateAmounts.overpayment().getAmount())
             .max(BigDecimal.ZERO);
     }
 

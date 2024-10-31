@@ -81,10 +81,10 @@ public class PrintingServiceImpl implements PrintingService {
                     YEAR, rate.getTimePoint().year(),
                     MONTH, rate.getTimePoint().month(),
                     DATE, rate.getTimePoint().date(),
-                    RATE, rate.getRateAmounts().getRateAmount(),
-                    INTEREST, rate.getRateAmounts().getInterestAmount(),
-                    CAPITAL, rate.getRateAmounts().getCapitalAmount(),
-                    OVERPAYMENT, rate.getRateAmounts().getOverpayment().getAmount(),
+                    RATE, rate.getRateAmounts().rateAmount(),
+                    INTEREST, rate.getRateAmounts().interestAmount(),
+                    CAPITAL, rate.getRateAmounts().capitalAmount(),
+                    OVERPAYMENT, rate.getRateAmounts().overpayment().getAmount(),
                     LEFT_AMOUNT, rate.getMortgageResidual().getResidualAmount(),
                     LEFT_MONTHS, rate.getMortgageResidual().getResidualDuration()
                 );
