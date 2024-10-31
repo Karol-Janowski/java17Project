@@ -29,7 +29,7 @@ public class DecreasingAmountsCalculationServiceImpl implements DecreasingAmount
     public RateAmounts calculate(final InputData inputData, final Overpayment overpayment, final Rate previousRate) {
         BigDecimal interestPercent = inputData.getInterestPercent();
 
-        BigDecimal residualAmount = previousRate.mortgageResidual().getResidualAmount();
+        BigDecimal residualAmount = previousRate.mortgageResidual().residualAmount();
         BigDecimal referenceAmount = previousRate.mortgageReference().getReferenceAmount();
         BigDecimal referenceDuration = previousRate.mortgageReference().getReferenceDuration();
 
