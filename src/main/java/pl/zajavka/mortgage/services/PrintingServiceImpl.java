@@ -100,13 +100,13 @@ public class PrintingServiceImpl implements PrintingService {
 
     @Override
     public void printSummary(final Summary summary) {
-        String msg = INTEREST_SUM + summary.getInterestSum() + CURRENCY +
+        String msg = INTEREST_SUM + summary.interestSum() + CURRENCY +
             NEW_LINE +
-            OVERPAYMENT_PROVISION + summary.getOverpaymentProvisionSum().setScale(2, RoundingMode.HALF_UP) + CURRENCY +
+            OVERPAYMENT_PROVISION + summary.overpaymentProvisionSum().setScale(2, RoundingMode.HALF_UP) + CURRENCY +
             NEW_LINE +
-            LOSTS_SUM + summary.getTotalLostSum().setScale(2, RoundingMode.HALF_UP) + CURRENCY +
+            LOSTS_SUM + summary.totalLostSum().setScale(2, RoundingMode.HALF_UP) + CURRENCY +
             NEW_LINE +
-            CAPITAL_SUM + summary.getTotalCapital().setScale(2, RoundingMode.HALF_UP) + CURRENCY +
+            CAPITAL_SUM + summary.totalCapital().setScale(2, RoundingMode.HALF_UP) + CURRENCY +
             NEW_LINE;
 
         log(msg);
