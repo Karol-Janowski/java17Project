@@ -78,9 +78,9 @@ public class PrintingServiceImpl implements PrintingService {
             if (rate.getRateNumber().remainder(BigDecimal.valueOf(inputData.getMortgageRateNumberToPrint())).equals(BigDecimal.ZERO)) {
                 String message = String.format(SCHEDULE_TABLE_FORMAT,
                     RATE_NUMBER, rate.getRateNumber(),
-                    YEAR, rate.getTimePoint().getYear(),
-                    MONTH, rate.getTimePoint().getMonth(),
-                    DATE, rate.getTimePoint().getDate(),
+                    YEAR, rate.getTimePoint().year(),
+                    MONTH, rate.getTimePoint().month(),
+                    DATE, rate.getTimePoint().date(),
                     RATE, rate.getRateAmounts().getRateAmount(),
                     INTEREST, rate.getRateAmounts().getInterestAmount(),
                     CAPITAL, rate.getRateAmounts().getCapitalAmount(),
