@@ -43,7 +43,7 @@ public class ResidualCalculationServiceImpl implements ResidualCalculationServic
     ) {
         // jak wystąpi nadpłata to zaczynają się schody,
         // trzeba przeliczyć kredyt w zależności od tego czy podczas nadpłaty zmniejszamy czas trwania czy wysokość raty
-        if (rateAmounts.overpayment().getAmount().compareTo(BigDecimal.ZERO) > 0) {
+        if (rateAmounts.overpayment().amount().compareTo(BigDecimal.ZERO) > 0) {
             switch (inputData.getRateType()) {
                 case CONSTANT:
                     return calculateConstantResidualDuration(inputData, residualAmount, rateAmounts);
@@ -89,7 +89,7 @@ public class ResidualCalculationServiceImpl implements ResidualCalculationServic
     private BigDecimal calculateResidualAmount(final BigDecimal residualAmount, final RateAmounts rateAmounts) {
         return residualAmount
             .subtract(rateAmounts.capitalAmount())
-            .subtract(rateAmounts.overpayment().getAmount())
+            .subtract(rateAmounts.overpayment().amount())
             .max(BigDecimal.ZERO);
     }
 

@@ -84,7 +84,7 @@ public class PrintingServiceImpl implements PrintingService {
                     RATE, rate.rateAmounts().rateAmount(),
                     INTEREST, rate.rateAmounts().interestAmount(),
                     CAPITAL, rate.rateAmounts().capitalAmount(),
-                    OVERPAYMENT, rate.rateAmounts().overpayment().getAmount(),
+                    OVERPAYMENT, rate.rateAmounts().overpayment().amount(),
                     LEFT_AMOUNT, rate.mortgageResidual().getResidualAmount(),
                     LEFT_MONTHS, rate.mortgageResidual().getResidualDuration()
                 );
