@@ -21,7 +21,7 @@ public class TimePointCalculationServiceImpl implements TimePointCalculationServ
     public TimePoint calculate(BigDecimal rateNumber, Rate previousRate) {
         BigDecimal year = calculateYear(rateNumber);
         BigDecimal month = calculateMonth(rateNumber);
-        LocalDate date = previousRate.getTimePoint().date().plus(1, ChronoUnit.MONTHS);
+        LocalDate date = previousRate.timePoint().date().plus(1, ChronoUnit.MONTHS);
         return new TimePoint(year, month, date);
     }
 

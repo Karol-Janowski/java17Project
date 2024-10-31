@@ -23,8 +23,8 @@ public class ResidualCalculationServiceImpl implements ResidualCalculationServic
 
     @Override
     public MortgageResidual calculate(RateAmounts rateAmounts, final InputData inputData, Rate previousRate) {
-        BigDecimal previousResidualAmount = previousRate.getMortgageResidual().getResidualAmount();
-        BigDecimal previousResidualDuration = previousRate.getMortgageResidual().getResidualDuration();
+        BigDecimal previousResidualAmount = previousRate.mortgageResidual().getResidualAmount();
+        BigDecimal previousResidualDuration = previousRate.mortgageResidual().getResidualDuration();
 
         if (BigDecimal.ZERO.equals(previousResidualAmount)) {
             return new MortgageResidual(BigDecimal.ZERO, BigDecimal.ZERO);

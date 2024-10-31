@@ -75,18 +75,18 @@ public class PrintingServiceImpl implements PrintingService {
 
         int index = 1;
         for (Rate rate : rates) {
-            if (rate.getRateNumber().remainder(BigDecimal.valueOf(inputData.getMortgageRateNumberToPrint())).equals(BigDecimal.ZERO)) {
+            if (rate.rateNumber().remainder(BigDecimal.valueOf(inputData.getMortgageRateNumberToPrint())).equals(BigDecimal.ZERO)) {
                 String message = String.format(SCHEDULE_TABLE_FORMAT,
-                    RATE_NUMBER, rate.getRateNumber(),
-                    YEAR, rate.getTimePoint().year(),
-                    MONTH, rate.getTimePoint().month(),
-                    DATE, rate.getTimePoint().date(),
-                    RATE, rate.getRateAmounts().rateAmount(),
-                    INTEREST, rate.getRateAmounts().interestAmount(),
-                    CAPITAL, rate.getRateAmounts().capitalAmount(),
-                    OVERPAYMENT, rate.getRateAmounts().overpayment().getAmount(),
-                    LEFT_AMOUNT, rate.getMortgageResidual().getResidualAmount(),
-                    LEFT_MONTHS, rate.getMortgageResidual().getResidualDuration()
+                    RATE_NUMBER, rate.rateNumber(),
+                    YEAR, rate.timePoint().year(),
+                    MONTH, rate.timePoint().month(),
+                    DATE, rate.timePoint().date(),
+                    RATE, rate.rateAmounts().rateAmount(),
+                    INTEREST, rate.rateAmounts().interestAmount(),
+                    CAPITAL, rate.rateAmounts().capitalAmount(),
+                    OVERPAYMENT, rate.rateAmounts().overpayment().getAmount(),
+                    LEFT_AMOUNT, rate.mortgageResidual().getResidualAmount(),
+                    LEFT_MONTHS, rate.mortgageResidual().getResidualDuration()
                 );
                 log(message);
                 if (index % AmountsCalculationService.YEAR.intValue() == 0) {

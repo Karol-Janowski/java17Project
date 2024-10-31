@@ -17,13 +17,13 @@ public class ReferenceCalculationServiceImpl implements ReferenceCalculationServ
 
     @Override
     public MortgageReference calculate(RateAmounts rateAmounts, final InputData inputData, Rate previousRate) {
-        if (BigDecimal.ZERO.equals(previousRate.getMortgageResidual().getResidualAmount())) {
+        if (BigDecimal.ZERO.equals(previousRate.mortgageResidual().getResidualAmount())) {
             return new MortgageReference(BigDecimal.ZERO, BigDecimal.ZERO);
         }
 
         switch (inputData.getOverpaymentReduceWay()) {
             case Overpayment.REDUCE_RATE:
-                return reduceRateMortgageReference(rateAmounts, previousRate.getMortgageResidual());
+                return reduceRateMortgageReference(rateAmounts, previousRate.mortgageResidual());
             case Overpayment.REDUCE_PERIOD:
                 return new MortgageReference(inputData.getAmount(), inputData.getMonthsDuration());
             default:

@@ -50,7 +50,7 @@ public class RateCalculationServiceImpl implements RateCalculationService {
             previousRate = nextRate;
             rateList.add(nextRate);
 
-            if (BigDecimal.ZERO.equals(nextRate.getMortgageResidual().getResidualAmount().setScale(0, RoundingMode.HALF_UP))) {
+            if (BigDecimal.ZERO.equals(nextRate.mortgageResidual().getResidualAmount().setScale(0, RoundingMode.HALF_UP))) {
                 break;
             }
         }

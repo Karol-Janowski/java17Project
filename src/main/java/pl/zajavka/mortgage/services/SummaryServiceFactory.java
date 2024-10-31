@@ -11,10 +11,10 @@ public class SummaryServiceFactory {
 
     public static SummaryService create() {
         return rates -> {
-            BigDecimal interestSum = calculate(rates, rate -> rate.getRateAmounts().interestAmount());
-            BigDecimal overpaymentProvisionSum = calculate(rates, rate -> rate.getRateAmounts().overpayment().getProvisionAmount());
+            BigDecimal interestSum = calculate(rates, rate -> rate.rateAmounts().interestAmount());
+            BigDecimal overpaymentProvisionSum = calculate(rates, rate -> rate.rateAmounts().overpayment().getProvisionAmount());
             BigDecimal totalLostSum = interestSum.add(overpaymentProvisionSum);
-            BigDecimal totalCapital = calculate(rates, rate -> totalCapital(rate.getRateAmounts()));
+            BigDecimal totalCapital = calculate(rates, rate -> totalCapital(rate.rateAmounts()));
             return new Summary(interestSum, overpaymentProvisionSum, totalLostSum, totalCapital);
         };
     }
